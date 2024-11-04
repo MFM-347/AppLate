@@ -4,7 +4,7 @@ on:
     inputs:
       name:
         description: "Debug-Build"
-        default: "Generate release build"
+        default: "Generate debug build"
       testers:
         type: choice
         description: "Select testers"
@@ -55,7 +55,9 @@ jobs:
           DEBUG_KEYSTORE_PASSWORD: ${{ secrets.DEBUG_KEYSTORE_PASSWORD }}
           DEBUG_KEYSTORE_ALIAS: ${{ secrets.DEBUG_KEYSTORE_ALIAS }}
           DEBUG_KEY_PASSWORD: ${{ secrets.DEBUG_KEY_PASSWORD }}
-        run: ./gradlew bundleDebug --stacktrace
+        run: |
+          chmod +x ./gradlew
+          ./gradlew bundleDebug --stacktrace
 
       - name: Get release file aab path
         id: releaseAab
