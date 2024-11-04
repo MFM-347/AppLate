@@ -30,8 +30,6 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2.0.10
 
-      # This will decode the keystore from base 64 text representation that we have stored in secrets
-      # and generates and keystore file and gets stored in /android-app path
       - name: Decode Keystore
         env:
           ENCODED_STRING: ${{ secrets.KEYSTORE_BASE_64 }}
@@ -62,20 +60,32 @@ jobs:
 
       - name: Get release file aab path
         id: releaseAab
-        run: echo "aabfile=$(find app/build/outputs/bundle/release/*.aab)" >> $GITHUB_OUTPUT
+        run: |
+          aabfile=$(find app/build/outputs/bundle/debug/*.aab)
+          if [ -z "$aabfile" ]; then
+            echo "No .aab file found!"
+            exit 1
+          fi
+          echo "aabfile=$aabfile" >> $GITHUB_OUTPUT
 
       - name: Get release file apk path
         id: releaseApk
-        run: echo "apkfile=$(find app/build/outputs/apk/release/*.apk)" >> $GITHUB_OUTPUT
+        run: |
+          apkfile=$(find app/build/outputs/apk/debug/*.apk)
+          if [ -z "$apkfile" ]; then
+            echo "No .apk file found!"
+            exit 1
+          fi
+          echo "apkfile=$apkfile" >> $GITHUB_OUTPUT
 
       - name: Zip Files
         uses: papeloto/action-zip@v1
         with:
           files: ${{ steps.releaseAab.outputs.aabfile }} ${{ steps.releaseApk.outputs.apkfile }}
-          dest: ${{ steps.releaseApk.outputs.apkfile }}.zip
+          dest: debug-build.zip
 
       - name: Upload Debug Build to Artifacts
         uses: actions/upload-artifact@v3
         with:
            name: release-artifacts
-           path: ${{ steps.releaseApk.outputs.apkfile }}
+           path: debug-build.zip
