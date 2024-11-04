@@ -43,6 +43,9 @@ jobs:
           echo $ENCODED_STRING > keystore-b64.txt
           base64 -d keystore-b64.txt > app/../ks/keystore.jks
 
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
       - name: Build Debug apk
         env:
           DEBUG_KEYSTORE_PASSWORD: ${{ secrets.DEBUG_KEYSTORE_PASSWORD }}
@@ -55,9 +58,7 @@ jobs:
           DEBUG_KEYSTORE_PASSWORD: ${{ secrets.DEBUG_KEYSTORE_PASSWORD }}
           DEBUG_KEYSTORE_ALIAS: ${{ secrets.DEBUG_KEYSTORE_ALIAS }}
           DEBUG_KEY_PASSWORD: ${{ secrets.DEBUG_KEY_PASSWORD }}
-        run: |
-          chmod +x ./gradlew
-          ./gradlew bundleDebug --stacktrace
+        run: ./gradlew bundleDebug --stacktrace
 
       - name: Get release file aab path
         id: releaseAab
