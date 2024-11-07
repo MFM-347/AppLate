@@ -1,7 +1,7 @@
 # AppLate
 Android **App Template** with GitHub Workflow Build
 
-This template automates building Android APK and AAB files using GitHub Actions, supporting debug builds and uploading build artifacts for distribution. The workflow is manually triggered via `workflow_dispatch`, with options to specify build names and target testers.
+This template automates building Android APK and AAB files using GitHub Actions, supporting debug builds and uploading build artifacts for distribution. The workflow being used is manually triggered.
 
 ## Usage
 
@@ -31,9 +31,6 @@ This template automates building Android APK and AAB files using GitHub Actions,
 ### Running the Workflow
 1. Navigate to the **Actions** tab in your repository.
 2. Select the **Android CI** workflow and click **Run workflow**.
-3. In the workflow dispatch panel:
-   - Enter a custom name for the build (optional).
-   - Select a tester group from the available options (`android`, `internalTesters`, `everyone`).
 
 ### Accessing Artifacts
 After the workflow completes, you can download the generated build artifacts:
