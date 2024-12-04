@@ -2,7 +2,7 @@
 
 Android **App Template** with GitHub Workflow Build
 
-This template automates building Android APK and AAB files using GitHub Actions, supporting debug builds and uploading build artifacts for distribution. The workflow being used is manually triggered.
+An Android CI/CD template that automates building of Android APK and AAB files using GitHub Actions, supporting debug builds as well as release builds and uploading build artifacts for distribution. The workflow being used is manually triggerable.
 
 ## Features
 
