@@ -1,47 +1,70 @@
 # AppLate
+
 Android **App Template** with GitHub Workflow Build
 
 This template automates building Android APK and AAB files using GitHub Actions, supporting debug builds and uploading build artifacts for distribution. The workflow being used is manually triggered.
 
+## Features
+
+1. **Automated CI/CD with GitHub Actions** for building Android APKs and AABs.
+2. **Customizable Project Setup** using an initialization script.
+3. **Environment Variables for Secure Signing** of builds.
+4. **Manual Trigger Workflow** for controlled release management.
+5. **Easy Artifact Download** directly from GitHub Actions.
+
 ## Usage
 
-### Using the Template
-1. **Create a New Repository from Template**:
-   - Click on **"Use this template"** at the top of the repository to create your own copy of this Android CI setup.
-   - Customize your new repository as needed.
+### Initialize Your Project
 
-2. **Add Environment Variables**:
-   - Go to your repository's **Settings** > **Secrets and variables** > **Actions** > **New repository secret**.
-   - Add the following secrets:
+1. Run the `init.py` script to set up your Android project metadata:
 
-### Required Secrets and Environment Variables
-1. **Keystore Information** (used to sign the APK and AAB):
-   - `KEYSTORE_BASE_64`: Base64-encoded version of your keystore file. To generate this, run:
-     ```bash
-     base64 <path_to_keystore_file> > keystore.b64
-     ```
-     Copy the contents of `keystore.b64` and add it as a secret.
-   - `DEBUG_KEYSTORE_PASSWORD`: The password for the keystore.
-   - `DEBUG_KEYSTORE_ALIAS`: The alias used in the keystore.
-   - `DEBUG_KEY_PASSWORD`: The password for the key.
+   - Updates package name, app name, and version details in the source code.
+   - Configures secrets for GitHub workflows.
 
-2. **Other Environment Setup**:
-   - Ensure the repository includes the `gradlew` file in the root directory and follows the standard Android app directory structure (`app/build/outputs` for APK and AAB outputs).
+   ```bash
+   python init.py
+   ```
 
-### Running the Workflow
-1. Navigate to the **Actions** tab in your repository.
-2. Select the **Android CI** workflow and click **Run workflow**.
+````
+The script reads metadata from a `_meta.json` file. Example structure:
 
-### Accessing Artifacts
-After the workflow completes, you can download the generated build artifacts:
-1. Go to the workflow run page under the **Actions** tab.
-2. Find `release-artifacts` under the uploaded artifacts section.
-3. Download `debug-build.zip`, which contains both the APK and AAB files for testing or distribution.
+```json
+{
+  "old_package": "dev.mfm.app",
+  "new_package": "com.package.new",
+  "name": "NewAppName",
+  "version_name": "1.0.0",
+  "version_code": "1"
+}
+```
+
+2. Verify your Android project files are updated correctly:
+   - `strings.xml`: Contains the updated app name.
+   - `build.gradle`: Updated with the new app name, version name, and version code.
+   - Package directory structure updated for the new package name.
+
+### Add Environment Variables
+
+2. **Keystore Information**:
+   - Add secrets to sign your builds:
+     - `KEYSTORE_BASE_64`, `DEBUG_KEYSTORE_PASSWORD`, `DEBUG_KEYSTORE_ALIAS`, `DEBUG_KEY_PASSWORD`.
+
+### Run GitHub Actions Workflows
+
+1. Trigger workflows from the **Actions** tab:
+
+   - Select **Build release-app** for production builds.
+   - Select **Build debug-app** for testing builds.
+
+2. Download artifacts (`release-build.zip` or `debug-build.zip`) from the workflow run.
 
 ## Credits
+
 This workflow was inspired by **Lloyd Dcosta**'s guide on [Medium](https://medium.com/@dcostalloyd90/automating-android-builds-with-github-actions-a-step-by-step-guide-2a02a54f59cd) and enhanced by [@MFM-347](https://github.com/MFM-347).
 
 ## License
+
 The code in this repository is licensed under the **Apache 2.0 License**.
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-0298c3.svg)](https://opensource.org/licenses/Apache-2.0)
+````

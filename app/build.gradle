@@ -2,14 +2,14 @@ plugins {
     id 'com.android.application'
 }
 android {
-    namespace 'dev.mfm.app'
+    namespace '$(application_id)'
     compileSdk 33
     defaultConfig {
-        applicationId "dev.mfm.app"
+        applicationId "$(application_id)"
         minSdk 21
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        versionCode $(version_code)
+        versionName "$(version_name)"
         vectorDrawables { 
             useSupportLibrary true
         }
