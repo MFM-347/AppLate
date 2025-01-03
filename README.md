@@ -24,7 +24,9 @@ An Android CI/CD template that automates building of Android APK and AAB files u
    ```bash
    python init.py
    ```
+
 ---
+
 The script reads metadata from a `_meta.json` file. Example structure:
 
 ```json

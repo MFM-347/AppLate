@@ -6,7 +6,7 @@
   android:layout_height="match_parent"
   android:padding="16dp"
   android:textSize="16sp">
-    
+
   <ImageView
     android:id="@+id/appIcon"
     android:layout_width="64dp"
