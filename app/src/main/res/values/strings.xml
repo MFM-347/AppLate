@@ -2,9 +2,11 @@
 <resources>
 
   <string
-    name="app_name">$(name)</string>
+    name="app_name">
+$(name)</string>
 
   <string
-    name="app_details">Unlock the full potential of your app with a stunning, user-centric design. Our UI template offers a sleek, intuitive layout that is adaptable to any app type, from productivity tools to social platforms. With a focus on simplicity and functionality, it ensures a seamless, engaging user experience from start to finish.</string>
+    name="app_details">
+Unlock the full potential of your app with a stunning, user-centric design. Our UI template offers a sleek, intuitive layout that is adaptable to any app type, from productivity tools to social platforms. With a focus on simplicity and functionality, it ensures a seamless, engaging user experience from start to finish.</string>
 
 </resources>
