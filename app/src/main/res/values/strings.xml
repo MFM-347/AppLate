@@ -6,6 +6,7 @@
 $(name)</string>
 
   <string
-    name="app_details">$(details)</string>
+    name="app_details">
+$(details)</string>
 
 </resources>
