@@ -22,9 +22,9 @@
 
     <ImageView
       android:id="@+id/appIcon"
-      android:src="@drawable/icon"
       android:layout_width="80dp"
       android:layout_height="80dp"
+      android:src="@drawable/icon"
       android:tint="?attr/colorPrimary"
       android:contentDescription="@string/app_name"
       android:layout_gravity="center" />
