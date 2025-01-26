@@ -22,12 +22,12 @@
 
     <ImageView
       android:id="@+id/appIcon"
+      android:src="@drawable/icon"
       android:layout_width="80dp"
       android:layout_height="80dp"
+      android:tint="?attr/colorPrimary"
       android:contentDescription="@string/app_name"
-      android:src="@drawable/icon"
-      android:layout_gravity="center"
-      android:tint="?attr/colorPrimary" />
+      android:layout_gravity="center" />
 
   </com.google.android.material.card.MaterialCardView>
 
@@ -50,8 +50,9 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="@string/app_details"
+    android:autoLink="web"
+    android:linksClickable="true"
     android:textAppearance="?attr/textAppearanceBody1"
-    android:fontFamily="sans-serif"
     android:lineSpacingExtra="4dp"
     android:layout_marginTop="8dp"
     android:paddingHorizontal="24dp"
