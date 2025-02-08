@@ -1,70 +1,68 @@
-# AppLate
+# AppLate - Android CI/CD Template
 
-Android **App Template** with GitHub Workflow Build
+**Automate Android APK & AAB Builds with GitHub Actions**
 
-An Android CI/CD template that automates building of Android APK and AAB files using GitHub Actions, supporting debug builds as well as release builds and uploading build artifacts for distribution. The workflow being used is manually triggerable.
+AppLate is a streamlined **Android Continuous Integration/Continuous Deployment (CI/CD) template** that simplifies the building of Android applications. Using GitHub Actions, this template automates the creation of APK and AAB files, enabling efficient distribution. The workflow supports both **debug** and **release builds** with manual triggering for controlled release management.
 
-## Features
+## 🚀 Features
 
-1. **Automated CI/CD with GitHub Actions** for building Android APKs and AABs.
-2. **Customizable Project Setup** using an initialization script.
-3. **Environment Variables for Secure Signing** of builds.
-4. **Manual Trigger Workflow** for controlled release management.
-5. **Easy Artifact Download** directly from GitHub Actions.
+✅ **Automated CI/CD** with GitHub Actions for APK & AAB builds.  
+✅ **Customizable Project Setup** using an initialization script.  
+✅ **Secure Signing** via environment variables.  
+✅ **Manual Workflow Triggers** for release management.  
+✅ **Easy Artifact Downloads** directly from GitHub Actions.
 
-## Usage
+## 📌 Getting Started
 
-### Initialize Your Project
+### 1️⃣ Update Workflow Permissions
 
-1. Run the `init.py` script to set up your Android project metadata:
+Ensure that your GitHub Actions workflow has the necessary **read and write** permissions:
 
-   - Updates package name, app name, and version details in the source code.
-   - Configures secrets for GitHub workflows.
+1. Navigate to your **GitHub repository**.
+2. Click on **Settings**.
+3. Select **Actions** from the left sidebar.
+4. Scroll down to **Workflow permissions**.
+5. Choose **Read and write permissions**.
+6. Click **Save**.
 
-   ```bash
-   python init.py
-   ```
+### 2️⃣ Initialize Your Project
 
----
+1. Update metadata in `_meta.json` under `objects > new` with the latest project details.
+2. Run the **Initialize** workflow from the `Actions` section to replace old metadata across all **Android project-related files**.
+3. Validate changes by checking:
+   - `AndroidManifest.xml`
+   - `build.gradle`
+   - Package names in source code
+4. Ensure no outdated references remain before proceeding.
 
-The script reads metadata from a `_meta.json` file. Example structure:
+### 3️⃣ Add Environment Variables
 
-```json
-{
-  "old_package": "dev.mfm.app",
-  "new_package": "com.package.new",
-  "name": "NewAppName",
-  "version_name": "1.0.0",
-  "version_code": "1"
-}
-```
+To sign builds securely, add the following **GitHub Secrets** in your repository:
 
-2. Verify your Android project files are updated correctly:
-   - `strings.xml`: Contains the updated app name.
-   - `build.gradle`: Updated with the new app name, version name, and version code.
-   - Package directory structure updated for the new package name.
+| Secret Name               | Description                     |
+| ------------------------- | ------------------------------- |
+| `KEYSTORE_BASE_64`        | Base64-encoded keystore file    |
+| `DEBUG_KEYSTORE_PASSWORD` | Password for the debug keystore |
+| `DEBUG_KEYSTORE_ALIAS`    | Alias for the debug keystore    |
+| `DEBUG_KEY_PASSWORD`      | Password for the key            |
 
-### Add Environment Variables
+## 🎯 Running GitHub Actions Workflows
 
-2. **Keystore Information**:
-   - Add secrets to sign your builds:
-     - `KEYSTORE_BASE_64`, `DEBUG_KEYSTORE_PASSWORD`, `DEBUG_KEYSTORE_ALIAS`, `DEBUG_KEY_PASSWORD`.
+To trigger a build, follow these steps:
 
-### Run GitHub Actions Workflows
+1. Go to **GitHub Actions**.
+2. Select the workflow:
+   - **Build Release App** → Generates production-ready builds.
+   - **Build Debug App** → Generates test/debug builds.
+3. Download build artifacts (`release-build.zip` or `debug-build.zip`) after the workflow completes.
 
-1. Trigger workflows from the **Actions** tab:
+## 📖 Credits
 
-   - Select **Build release-app** for production builds.
-   - Select **Build debug-app** for testing builds.
+- XML formatting is done using [Android XML Formatter](https://github.com/ByteHamster/android-xml-formatter).
+- This workflow is inspired of **Lloyd Dcosta**’s workflow example on [Medium](https://medium.com/@dcostalloyd90/automating-android-builds-with-github-actions-a-step-by-step-guide-2a02a54f59cd) and further enhanced by **[@MFM-347](https://github.com/MFM-347)**.
 
-2. Download artifacts (`release-build.zip` or `debug-build.zip`) from the workflow run.
+## 📜 License
 
-## Credits
+This project is licensed under the **Apache 2.0 License**.
 
-This workflow was inspired by **Lloyd Dcosta**'s guide on [Medium](https://medium.com/@dcostalloyd90/automating-android-builds-with-github-actions-a-step-by-step-guide-2a02a54f59cd) and enhanced by [@MFM-347](https://github.com/MFM-347).
-
-## License
-
-The code in this repository is licensed under the **Apache 2.0 License**.
-
-[![License](https://img.shields.io/badge/License-Apache_2.0-0298c3.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License](https://img.shields.io/badge/License-Apache_2.0-0298c3.svg)](https://github.com/MFM-347/AppLate/blob/main/LICENSE)

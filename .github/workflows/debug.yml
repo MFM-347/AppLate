@@ -1,5 +1,5 @@
 name: Build debug-app
-'on':
+"on":
   workflow_dispatch:
 
 jobs:

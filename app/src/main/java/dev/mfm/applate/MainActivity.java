@@ -1,9 +1,9 @@
-package dev.mfm.app;
+package dev.mfm.applate;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import dev.mfm.app.databinding.ActivityMainBinding;
+import dev.mfm.applate.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 

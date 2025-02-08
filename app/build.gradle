@@ -1,45 +1,55 @@
 plugins {
-    id 'com.android.application'
+  id 'com.android.application'
 }
+
 android {
-    namespace '$(application_id)'
-    compileSdk 33
-    defaultConfig {
-        applicationId "$(application_id)"
-        minSdk 21
-        targetSdk 33
-        versionCode $(version_code)
-        versionName "$(version_name)"
-        vectorDrawables { 
-            useSupportLibrary true
-        }
+  namespace 'dev.mfm.applate'
+  compileSdk 33
+
+  defaultConfig {
+    applicationId "dev.mfm.applate"
+    minSdk 21
+    targetSdk 33
+    versionCode 1
+    versionName "1.0.0"
+
+    vectorDrawables {
+      useSupportLibrary true
     }
-    signingConfigs{
-        release{
-            storeFile file("../ks/keystore.jks")
-            storePassword System.getenv("RELEASE_KEYSTORE_PASSWORD")
-            keyAlias System.getenv("RELEASE_KEYSTORE_ALIAS")
-            keyPassword System.getenv("RELEASE_KEY_PASSWORD")
-        }
+  }
+
+  signingConfigs {
+    release {
+      storeFile file("../devAssets/keystore.jks")
+      storePassword System.getenv("RELEASE_KEYSTORE_PASSWORD")
+      keyAlias System.getenv("RELEASE_KEYSTORE_ALIAS")
+      keyPassword System.getenv("RELEASE_KEY_PASSWORD")
     }
-    buildTypes {
-        release {
-            minifyEnabled true
-            signingConfig signingConfigs.release
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
+  }
+
+  buildTypes {
+    debug {
+      minifyEnabled true
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+    release {
+      minifyEnabled true
+      signingConfig signingConfigs.release
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
-    buildFeatures {
-        viewBinding true
-    }
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_11
+    targetCompatibility JavaVersion.VERSION_11
+  }
+
+  buildFeatures {
+    viewBinding true
+  }
 }
 
 dependencies {
-    implementation("com.google.android.material:material:1.9.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.appcompat:appcompat:1.6.1")
+  implementation "com.google.android.material:material:1.9.0"
+  implementation "androidx.constraintlayout:constraintlayout:2.1.4"
+  implementation "androidx.appcompat:appcompat:1.6.1"
 }

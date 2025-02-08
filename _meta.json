@@ -1,8 +1,16 @@
 {
-  "old_package": "dev.mfm.app",
-  "new_package": "dev.mfm.myapp",
-  "name": "AppLate",
-  "details": "An open-source Android template",
-  "version_name": "1.0.0",
-  "version_code": "1"
+  "old": {
+    "package": "dev.mfm.applatelate",
+    "name": "AppLate",
+    "details": "An open-source Android template",
+    "version_name": "1.0.0",
+    "version_code": "1"
+  },
+  "mew": {
+    "package": "dev.mfm.app",
+    "name": "Test App",
+    "details": "An open-source Android template",
+    "version_name": "1.0.0",
+    "version_code": "1"
+  }
 }

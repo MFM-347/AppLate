@@ -3,12 +3,12 @@ name: AutoFormat
 on:
   push:
     paths:
-      - '**/*'
+      - "**/*"
     branches:
       - main
   pull_request:
     paths:
-      - '**/*'
+      - "**/*"
     branches:
       - main
   workflow_dispatch:
@@ -30,13 +30,14 @@ jobs:
       - name: Configure Prettier
         run: |
           echo '{
-            "semi": true,
+            "semi": false,
             "singleQuote": true,
             "tabWidth": 2,
-            "trailingComma": "es5",
-            "printWidth": 80,
-            "arrowParens": "always"
-          }' > .prettierrc
+            "printWidth": 120,
+            "plugins": [
+              "prettier-plugin-java",
+              "prettier-plugin-kotlin"
+            ]' > .prettierrc
           echo '*.min.*
           .github/**/*
           *-min.*
@@ -44,13 +45,12 @@ jobs:
 
       - name: Install Prettier with plugins
         run: |
-          npm i -D prettier prettier-plugin-java
-          
+          npm i -D prettier prettier-plugin-java prettier-plugin-kotlin
+
       - name: Format all files
         run: |
-          npx prettier -w **/*.md
-          npx prettier -w **/*.java --plugin=prettier-plugin-java
-          find . -type f -name "*.xml" -exec java -jar tools/android-xml-formatter.jar --indention 2 --attribute-indention 2 {} \;
+          npx prettier -w **/*.{java,md,kt,json,md}
+          find . -type f -name "*.xml" -exec java -jar devAssets/android-xml-formatter.jar --indention 2 --attribute-indention 2 {} \;
 
       - name: Clean up unnecessary files
         run: |

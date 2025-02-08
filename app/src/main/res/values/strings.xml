@@ -3,10 +3,10 @@
 
   <string
     name="app_name">
-$(name)</string>
+Applate</string>
 
   <string
     name="app_details">
-$(details)</string>
+An open-source Android template</string>
 
 </resources>
