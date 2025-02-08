@@ -1,4 +1,4 @@
-name: Build release-app
+name: Build release app
 
 "on":
   workflow_dispatch:
@@ -27,7 +27,7 @@ jobs:
           RELEASE_KEYSTORE_ALIAS: "${{ secrets.RELEASE_KEYSTORE_ALIAS }}"
           RELEASE_KEY_PASSWORD: "${{ secrets.RELEASE_KEY_PASSWORD }}"
         run: |
-          mkdir -p app/../ks
+          mkdir -p app/../devAssets
           echo $ENCODED_STRING > keystore-b64.txt
           base64 -d keystore-b64.txt > app/../devAssets/keystore.jks
 

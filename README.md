@@ -27,7 +27,7 @@ Ensure that your GitHub Actions workflow has the necessary **read and write** pe
 
 ### 2️⃣ Initialize Your Project
 
-1. Update metadata in `_meta.json` under `objects > new` with the latest project details.
+1. Update metadata in `devAssets/_meta.json` under `objects > new` with the latest project details.
 2. Run the **Initialize** workflow from the `Actions` section to replace old metadata across all **Android project-related files**.
 3. Validate changes by checking:
    - `AndroidManifest.xml`

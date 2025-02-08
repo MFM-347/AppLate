@@ -1,4 +1,4 @@
-name: AutoFormat
+name: format
 
 on:
   push:
@@ -37,7 +37,8 @@ jobs:
             "plugins": [
               "prettier-plugin-java",
               "prettier-plugin-kotlin"
-            ]' > .prettierrc
+            ]
+          }' > .prettierrc
           echo '*.min.*
           .github/**/*
           *-min.*
