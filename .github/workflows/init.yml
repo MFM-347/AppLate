@@ -17,27 +17,28 @@ jobs:
           distribution: "temurin"
           java-version: "17"
 
-    - name: Load metadata
-      run: |
-        META_FILE="devAssets/_meta.json"
-        if [[ ! -f "$META_FILE" ]]; then
-          echo "Error: Metadata file not found!"
-          exit 1
-        fi
-        OLD_PACKAGE=$(jq -r '.old.package' $META_FILE)
-        OLD_NAME=$(jq -r '.old.name' $META_FILE)
-        OLD_VERSION_NAME=$(jq -r '.old.version_name' $META_FILE)
-        OLD_VERSION_CODE=$(jq -r '.old.version_code' $META_FILE)
-        NEW_PACKAGE=$(jq -r '.new.package' $META_FILE)
-        NEW_NAME=$(jq -r '.new.name' $META_FILE)
-        NEW_VERSION_NAME=$(jq -r '.new.version_name' $META_FILE)
-        NEW_VERSION_CODE=$(jq -r '.new.version_code' $META_FILE)
-        
-        find . -type f \( -name "*.gradle" -o -name "*.xml" -o -name "*.java" -o -name "*.kt" \) -exec sed -i \
-          -e "s/$OLD_PACKAGE/$NEW_PACKAGE/g" \
-          -e "s/$OLD_NAME/$NEW_NAME/g" \
-          -e "s/$OLD_VERSION_NAME/$NEW_VERSION_NAME/g" \
-          -e "s/versionCode $OLD_VERSION_CODE/versionCode $NEW_VERSION_CODE/g" {} +
+      - name: Load metadata
+        run: |
+          META_FILE="devAssets/_meta.json"
+          if [[ ! -f "$META_FILE" ]]; then
+            echo "Error: Metadata file not found!"
+            exit 1
+          fi
+
+          OLD_PACKAGE=$(jq -r '.old.package' $META_FILE)
+          OLD_NAME=$(jq -r '.old.name' $META_FILE)
+          OLD_VERSION_NAME=$(jq -r '.old.version_name' $META_FILE)
+          OLD_VERSION_CODE=$(jq -r '.old.version_code' $META_FILE)
+          NEW_PACKAGE=$(jq -r '.new.package' $META_FILE)
+          NEW_NAME=$(jq -r '.new.name' $META_FILE)
+          NEW_VERSION_NAME=$(jq -r '.new.version_name' $META_FILE)
+          NEW_VERSION_CODE=$(jq -r '.new.version_code' $META_FILE)
+
+          find . -type f \( -name "*.gradle" -o -name "*.xml" -o -name "*.java" -o -name "*.kt" \) -exec sed -i \
+            -e "s/$OLD_PACKAGE/$NEW_PACKAGE/g" \
+            -e "s/$OLD_NAME/$NEW_NAME/g" \
+            -e "s/$OLD_VERSION_NAME/$NEW_VERSION_NAME/g" \
+            -e "s/versionCode $OLD_VERSION_CODE/versionCode $NEW_VERSION_CODE/g" {} +
 
       - name: Commit and push changes
         run: |
