@@ -50,7 +50,7 @@ jobs:
 
       - name: Format all files
         run: |
-          npx prettier -w **/*
+          npx prettier -w **/*.{java,md,json}
           find . -type f -name "*.xml" -exec java -jar devAssets/android-xml-formatter.jar --indention 2 --attribute-indention 2 {} \;
 
       - name: Clean up unnecessary files
