@@ -8,8 +8,8 @@
   },
   "mew": {
     "package": "dev.mfm.app",
-    "name": "Test App",
-    "details": "An open-source Android template",
+    "name": "App",
+    "details": "An open-source App built with Android Template (AppLate <https://github.com/MFM-347/AppLate>",
     "version_name": "1.0.0",
     "version_code": "1"
   }
