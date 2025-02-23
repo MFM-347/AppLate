@@ -1,5 +1,17 @@
 # AppLate - Android CI/CD Template
 
+![API](https://img.shields.io/badge/Api%2021+-f4f5f6?logo=android&logoColor=black&style=for-the-badge)
+![Java](https://img.shields.io/badge/Java-red?logo=Java&logoColor=white&style=for-the-badge)
+![Material You](https://custom-icon-badges.demolab.com/badge/material%20you-lightblue?style=for-the-badge&logoColor=333&logo=material-you)
+![GitHub code size](https://img.shields.io/github/languages/code-size/MFM-347/AppLate?style=for-the-badge&color=505B92)
+![Github Repo Size](https://img.shields.io/github/repo-size/MFM-347/AppLate?style=for-the-badge&color=505B92)
+![Stars](https://img.shields.io/github/stars/MFM-347/AppLate?color=blue&style=for-the-badge)
+<!--
+UNCOMMENT IF NEEDED
+![Latest Release](https://img.shields.io/github/v/release/MFM-347/AppLate?color=B9C3FF&include_prereleases&style=for-the-badge)
+![Last Commit](https://img.shields.io/github/last-commit/MFM-347/AppLate?color=F05032&style=for-the-badge)
+-->
+
 **Automate Android APK & AAB Builds with GitHub Actions**
 
 AppLate is a streamlined **Android Continuous Integration/Continuous Deployment (CI/CD) template** that simplifies the building of Android applications. Using GitHub Actions, this template automates the creation of APK and AAB files, enabling efficient distribution. The workflow supports both **debug** and **release builds** with manual triggering for controlled release management.
