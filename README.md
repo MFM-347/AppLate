@@ -6,7 +6,6 @@
 ![GitHub code size](https://img.shields.io/github/languages/code-size/MFM-347/AppLate?style=for-the-badge&color=505B92)
 ![Github Repo Size](https://img.shields.io/github/repo-size/MFM-347/AppLate?style=for-the-badge&color=505B92)
 ![Stars](https://img.shields.io/github/stars/MFM-347/AppLate?color=blue&style=for-the-badge)
-
 <!--
 UNCOMMENT IF NEEDED
 ![Latest Release](https://img.shields.io/github/v/release/MFM-347/AppLate?color=B9C3FF&include_prereleases&style=for-the-badge)
@@ -78,4 +77,4 @@ To trigger a build, follow these steps:
 
 This project is licensed under the **Apache 2.0 License**.
 
-[![License](https://img.shields.io/badge/License-Apache_2.0-0298c3.svg)](https://github.com/MFM-347/AppLate/blob/main/LICENSE)
+[![License](https://img.shields.io/badge/License-Apache_2.0-0298c3.svg?style=for-the-badge)](https://github.com/MFM-347/AppLate/blob/main/LICENSE)
