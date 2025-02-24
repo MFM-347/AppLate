@@ -17,33 +17,68 @@ jobs:
           distribution: "temurin"
           java-version: "17"
 
-      - name: Load metadata
+      - name: Install jq (JSON processor)
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Load metadata and update project files
         run: |
           META_FILE="devAssets/_meta.json"
           if [[ ! -f "$META_FILE" ]]; then
-            echo "Error: Metadata file not found!"
+            echo "err: Metadata file not found!"
             exit 1
           fi
 
-          OLD_PACKAGE=$(jq -r '.old.package' $META_FILE)
-          OLD_NAME=$(jq -r '.old.name' $META_FILE)
-          OLD_VERSION_NAME=$(jq -r '.old.version_name' $META_FILE)
-          OLD_VERSION_CODE=$(jq -r '.old.version_code' $META_FILE)
-          NEW_PACKAGE=$(jq -r '.new.package' $META_FILE)
-          NEW_NAME=$(jq -r '.new.name' $META_FILE)
-          NEW_VERSION_NAME=$(jq -r '.new.version_name' $META_FILE)
-          NEW_VERSION_CODE=$(jq -r '.new.version_code' $META_FILE)
+          OLD_PACKAGE=$(jq -r '.old.package' "$META_FILE")
+          OLD_NAME=$(jq -r '.old.name' "$META_FILE")
+          OLD_DETAILS=$(jq -r '.old.details' "$META_FILE" | sed 's/[\/&]/\\&/g')
+          OLD_VERSION_NAME=$(jq -r '.old.version_name' "$META_FILE")
+          OLD_VERSION_CODE=$(jq -r '.old.version_code' "$META_FILE")
+          NEW_PACKAGE=$(jq -r '.new.package' "$META_FILE")
+          NEW_NAME=$(jq -r '.new.name' "$META_FILE")
+          NEW_DETAILS=$(jq -r '.new.details' "$META_FILE" | sed 's/[\/&]/\\&/g')
+          NEW_VERSION_NAME=$(jq -r '.new.version_name' "$META_FILE")
+          NEW_VERSION_CODE=$(jq -r '.new.version_code' "$META_FILE")
 
-          find . -type f \( -name "*.gradle" -o -name "*.xml" -o -name "*.java" -o -name "*.kt" \) -exec sed -i \
+          echo "info: Updating build.gradle, Java files, and AndroidManifest.xml..."
+          find . -type f \( -name "*.gradle" -o -name "*.java" -o -name "AndroidManifest.xml" \) -exec sed -i \
             -e "s/$OLD_PACKAGE/$NEW_PACKAGE/g" \
             -e "s/$OLD_NAME/$NEW_NAME/g" \
             -e "s/$OLD_VERSION_NAME/$NEW_VERSION_NAME/g" \
-            -e "s/versionCode $OLD_VERSION_CODE/versionCode $NEW_VERSION_CODE/g" {} +
+            -e "s/versionCode[[:space:]]+[0-9]+/versionCode $NEW_VERSION_CODE/g" {} +
+
+          echo "info: Renaming Java package directories..."
+          OLD_PACKAGE_PATH=$(echo "$OLD_PACKAGE" | tr '.' '/')
+          NEW_PACKAGE_PATH=$(echo "$NEW_PACKAGE" | tr '.' '/')
+          if [ -d "app/src/main/java/$OLD_PACKAGE_PATH" ]; then
+            mkdir -p "app/src/main/java/$NEW_PACKAGE_PATH"
+            mv "app/src/main/java/$OLD_PACKAGE_PATH"/* "app/src/main/java/$NEW_PACKAGE_PATH"
+            rm -rf "app/src/main/java/$OLD_PACKAGE_PATH"
+            echo "success: Package path updated from $OLD_PACKAGE_PATH to $NEW_PACKAGE_PATH"
+          else
+            echo "warn: Package path not found: $OLD_PACKAGE_PATH"
+          fi
+
+          echo "info: Updating strings.xml..."
+          find . -type f -name "strings.xml" | while read STRING_FILE; do
+            if [[ -f "$STRING_FILE" ]]; then
+              ESCAPED_OLD_NAME=$(echo "$OLD_NAME" | sed -e 's/[&/\]/\\&/g')
+              ESCAPED_NEW_NAME=$(echo "$NEW_NAME" | sed -e 's/[&/\]/\\&/g')
+              ESCAPED_OLD_DETAILS=$(echo "$OLD_DETAILS" | sed -e 's/[&/\]/\\&/g')
+              ESCAPED_NEW_DETAILS=$(echo "$NEW_DETAILS" | sed -e 's/[&/\]/\\&/g')
+
+              sed -i -E "s|>${ESCAPED_OLD_NAME}<|>${ESCAPED_NEW_NAME}<|g" "$STRING_FILE"
+              sed -i -E "s|>${ESCAPED_OLD_DETAILS}<|>${ESCAPED_NEW_DETAILS}<|g" "$STRING_FILE"
+
+              echo "success: Updated $STRING_FILE"
+            else
+              echo "warn: strings.xml not found."
+            fi
+          done
 
       - name: Commit and push changes
         run: |
           git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions@github.com'
+          git config --global user.email 'actions@github.com'
+
           git add .
-          git commit -m "Updated project details from metadata"
-          git push
+          git diff --quiet && echo "warn: No changes detected. Skipping commit." || (git commit -m "Updated project details from metadata" && git push)

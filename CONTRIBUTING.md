@@ -1,13 +1,13 @@
-# Contributing to RenDroid
+# Contributing to AppLate
 
-Thank you for considering contributing to RenDroid! 🎉  
+Thank you for considering contributing to AppLate! 🎉  
 Your contributions, whether big or small, are essential to the success of this project. We welcome **bug reports**, **feature requests**, **documentation updates**, and **code improvements**.
 
 ## Contribution Guide
 
 ### Step 1: Fork the Repository
 
-1. Navigate to the [RenDroid repository](https://github.com/MFM-347/RenDroid).
+1. Navigate to the [AppLate repository](https://github.com/MFM-347/AppLate).
 2. Click the **Fork** button in the top-right corner to create your own copy of the repository.
 
 ### Step 2: Clone Your Fork
@@ -15,8 +15,8 @@ Your contributions, whether big or small, are essential to the success of this p
 Clone your forked repository to your local machine:
 
 ```bash
-git clone https://github.com/<your-username>/RenDroid.git
-cd RenDroid
+git clone https://github.com/<your-username>/AppLate.git
+cd AppLate
 ```
 
 ### Step 3: Set Up Your Environment
@@ -95,7 +95,7 @@ Push your branch to your fork:
 git push origin <branch-name>
 ```
 
-Then, navigate to the **original RenDroid repository** and submit a pull request.  
+Then, navigate to the **original AppLate repository** and submit a pull request.  
 Include the following in your PR description:
 
 - A summary of changes.
@@ -104,7 +104,7 @@ Include the following in your PR description:
 
 ## Reporting Issues
 
-Encountered a bug or have a great idea for a new feature? Create an issue [here](https://github.com/MFM-347/RenDroid/issues).
+Encountered a bug or have a great idea for a new feature? Create an issue [here](https://github.com/MFM-347/AppLate/issues).
 
 ### Guidelines for Issues:
 
@@ -146,7 +146,7 @@ To maintain a high-quality codebase, please follow these guidelines:
 
 If you’re unsure about something or need guidance:
 
-- Start a [discussion](https://github.com/MFM-347/RenDroid/discussions).
+- Start a [discussion](https://github.com/MFM-347/AppLate/discussions).
 - Join our community for support and collaboration.
 
-Thank you ✨ for contributing to RenDroid! Your effort makes this project better for everyone.
+Thank you ✨ for contributing to AppLate! Your effort makes this project better for everyone.
