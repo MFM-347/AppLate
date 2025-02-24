@@ -6,12 +6,8 @@
 ![GitHub code size](https://img.shields.io/github/languages/code-size/MFM-347/AppLate?style=for-the-badge&color=505B92)
 ![Github Repo Size](https://img.shields.io/github/repo-size/MFM-347/AppLate?style=for-the-badge&color=505B92)
 ![Stars](https://img.shields.io/github/stars/MFM-347/AppLate?color=blue&style=for-the-badge)
-
-<!--
-UNCOMMENT IF NEEDED
 ![Latest Release](https://img.shields.io/github/v/release/MFM-347/AppLate?color=B9C3FF&include_prereleases&style=for-the-badge)
 ![Last Commit](https://img.shields.io/github/last-commit/MFM-347/AppLate?color=F05032&style=for-the-badge)
--->
 
 **Automate Android APK & AAB Builds with GitHub Actions**
 
